@@ -1,0 +1,18 @@
+CREATE DATABASE db_gestion_tareas;
+USE db_gestion_tareas;
+
+CREATE TABLE usuario (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE tareas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  description TEXT,
+  due_date DATETIME NOT NULL,
+  status ENUM('pendiente', 'en progreso', 'completas') NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
